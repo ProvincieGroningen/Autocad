@@ -29,9 +29,6 @@ namespace ProvincieGroningen.AutoCad
         public int AantalKolommen { get; set; }
 
         [XmlElement]
-        public double Schaal { get; set; }
-
-        [XmlElement]
         public string Url { get; set; }
     }
 

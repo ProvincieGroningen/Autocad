@@ -19,7 +19,6 @@
               <xs:element name="TegelHoogte" type="xs:decimal"/>
               <xs:element name="AantalRijen" type="xs:integer"/>
               <xs:element name="AantalKolommen" type="xs:integer"/>
-              <xs:element name="Schaal" type="xs:decimal"/>
               <xs:element name="Url">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">

@@ -17,7 +17,7 @@ namespace ProvincieGroningen.AutoCad
         {
             var epsg = "EPSG:28992";
 
-            if (AutocadUtils.IsCoordinateSystem(epsg))
+            if (!AutocadUtils.IsCoordinateSystem(epsg))
             {
                 Application.ShowAlertDialog($"Deze tekening heeft niet het juiste Coordinate System ({epsg})");
                 return;
@@ -37,7 +37,7 @@ namespace ProvincieGroningen.AutoCad
             {
                 using (tileFile)
                 {
-                    RasterImage.AttachRasterImage(tileFile.TopLeft, tileFile.File, config.Schaal);
+                    RasterImage.AttachRasterImage(tileFile.BottomLeft, tileFile.File, config.TegelBreedte, config.TegelHoogte);
                 }
             }
         }
@@ -47,7 +47,7 @@ namespace ProvincieGroningen.AutoCad
             return config.GetTilesForRectangle(rectangle).Select(tile => new TileFile
             {
                 File = Download(tile.FormattedUrl()),
-                TopLeft = tile.TopLeft,
+                BottomLeft = tile.BottomLeft,
             });
         }
 
@@ -64,11 +64,11 @@ namespace ProvincieGroningen.AutoCad
         class TileFile : IDisposable
         {
             public FileInfo File;
-            public Point3d TopLeft;
+            public Point3d BottomLeft;
 
             public void Dispose()
             {
-                File.Delete();
+                
             }
         }
     }
