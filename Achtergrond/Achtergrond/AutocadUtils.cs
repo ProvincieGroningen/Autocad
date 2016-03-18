@@ -21,7 +21,7 @@ namespace ProvincieGroningen.AutoCad
                     options.Keywords.Add(command);
                 }
                 options.Keywords.Default = defaultCommand;
-                
+
                 var result = Application.DocumentManager.CurrentDocument.Editor.GetKeywords(options);
                 return commands.First(c => c.StartsWith(result.StringResult));
             }
@@ -63,9 +63,10 @@ namespace ProvincieGroningen.AutoCad
         }
 
 
-        public static bool IsCoordinateSystem(int epsg)
+        public static bool IsCoordinateSystem(string srs)
         {
-            return Autodesk.AutoCAD.DatabaseServices.GeoCoordinateSystem.Create("Netherlands-RDNew").EPSGcode == epsg;
+            //TODO: Fix this
+            return true;
         }
     }
 }
