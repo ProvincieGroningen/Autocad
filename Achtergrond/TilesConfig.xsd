@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="TilesConfig">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="TileConfig">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" type="xs:string" />
+              <xs:element name="Tiles">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="Tile">
+                      <xs:complexType>
+                        <xs:attribute name="FileName" type="xs:string" use="required" />
+                        <xs:attribute name="X0" type="xs:decimal" use="required" />
+                        <xs:attribute name="Y0" type="xs:decimal" use="required" />
+                        <xs:attribute name="X1" type="xs:decimal" use="required" />
+                        <xs:attribute name="Y2" type="xs:decimal" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

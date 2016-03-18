@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="TilesConfig">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="TileConfig">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Naam" type="xs:string" />
+              <xs:element name="LinksBoven">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="X" />
+                    <xs:element name="Y" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="TegelBreedte" type="xs:decimal"/>
+              <xs:element name="TegelHoogte" type="xs:decimal"/>
+              <xs:element name="AantalRijen" type="xs:integer"/>
+              <xs:element name="AantalKolommen" type="xs:integer"/>
+              <xs:element name="Schaal" type="xs:decimal"/>
+              <xs:element name="Url">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:pattern value="(http|file|https)://.*"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

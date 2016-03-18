@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<TilesConfig>
+  <TileConfig>
+    <Naam>LL - Achtergrond (lage resolutie)</Naam>
+    <LinksBoven>
+      <X>10</X>
+      <Y>10</Y>
+    </LinksBoven>
+    <TegelBreedte>250</TegelBreedte>
+    <TegelHoogte>250</TegelHoogte>
+    <Schaal>250000</Schaal>
+    <Url>file://l:/iets/verder/luchtfoto{X}z{Y}.ecw</Url>
+  </TileConfig>
+  <TileConfig>
+    <Naam>LH - Achtergrond (hoge resolutie)</Naam>
+    <LinksBoven>
+      <X>10</X>
+      <Y>10</Y>
+    </LinksBoven>
+    <TegelBreedte>250</TegelBreedte>
+    <TegelHoogte>250</TegelHoogte>
+    <Schaal>250000</Schaal>
+    <Url>http://werafsdfaswef/service=WMS&amp;{Rij}z{Kolom}.ecw</Url>
+  </TileConfig>
+  <TileConfig>
+    <Naam>BP - Bestemmingsplan</Naam>
+    <LinksBoven>
+      <X>10</X>
+      <Y>10</Y>
+    </LinksBoven>
+    <TegelBreedte>250</TegelBreedte>
+    <TegelHoogte>250</TegelHoogte>
+    <Schaal>250000</Schaal>
+    <Url>file://c:/temp/kollum.tiff</Url>
+  </TileConfig>
+</TilesConfig>
