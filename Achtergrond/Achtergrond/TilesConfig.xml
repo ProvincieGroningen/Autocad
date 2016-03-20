@@ -24,8 +24,9 @@
   <TileConfig>
     <Naam>BP - Bestemmingsplan</Naam>
     <LinksBoven>
+      <!-- Let op!! De naam van het luchtfotobestand bevat het coordinaat linksonder. Het Y-coordinaat linksboven van de luchtfoto is daarom 1000 meer.-->
       <X>116000</X>
-      <Y>580000</Y>
+      <Y>590000</Y>
     </LinksBoven>
     <TegelBreedte>1000</TegelBreedte>
     <TegelHoogte>1000</TegelHoogte>

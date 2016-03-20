@@ -14,7 +14,7 @@ namespace ProvincieGroningen.AutoCad
             public int Rij;
             public int Kolom;
             public Coordinaat TopLeft;
-            public Coordinaat BottomLeft;
+            public Coordinaat BottomRight;
         }
 
         public static IEnumerable<TileReference> GetTilesForRectangle(this TileConfig tileConfig, Coordinaat[] rectangle)
@@ -48,7 +48,7 @@ namespace ProvincieGroningen.AutoCad
                         Kolom = kolom,
                         Rij = rij,
                         TopLeft = new Coordinaat(x, y),
-                        BottomLeft = new Coordinaat(x, y - tileConfig.TegelHoogte),
+                        BottomRight = new Coordinaat(x + tileConfig.TegelBreedte, y - tileConfig.TegelHoogte),
                     };
                 }
             }
@@ -59,8 +59,10 @@ namespace ProvincieGroningen.AutoCad
             return reference.TileConfig.Url
                 .Replace("{Rij}", reference.Rij.ToString(CultureInfo.InvariantCulture))
                 .Replace("{Kolom}", reference.Kolom.ToString(CultureInfo.InvariantCulture))
-                .Replace("{X}", reference.TopLeft.X.ToString(CultureInfo.InvariantCulture))
-                .Replace("{Y}", reference.TopLeft.Y.ToString(CultureInfo.InvariantCulture))
+                .Replace("{X_Links}", reference.TopLeft.X.ToString(CultureInfo.InvariantCulture))
+                .Replace("{Y_Boven}", reference.TopLeft.Y.ToString(CultureInfo.InvariantCulture))
+                .Replace("{X_Rechts}", reference.BottomRight.X.ToString(CultureInfo.InvariantCulture))
+                .Replace("{Y_Onder}", reference.BottomRight.Y.ToString(CultureInfo.InvariantCulture))
                 ;
         }
     }

@@ -59,11 +59,6 @@ namespace ProvincieGroningen.AutoCad
         {
             return rectangle.Select(p => new Coordinaat((decimal) p.X, (decimal) p.Y)).ToArray();
         }
-
-        public static Point3d ToPoint3D(this Coordinaat coordinaat)
-        {
-            return new Point3d((double) coordinaat.X, (double) coordinaat.Y, 0);
-        }
     }
 
     [XmlRoot("TilesConfig")]
