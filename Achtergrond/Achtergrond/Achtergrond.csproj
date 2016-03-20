@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ProvincieGroningen.AutoCad</RootNamespace>
-    <AssemblyName>ProvincieGroningen.AutoCad.Achergrond</AssemblyName>
+    <AssemblyName>ProvincieGroningen.AutoCad.Achtergrond</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
