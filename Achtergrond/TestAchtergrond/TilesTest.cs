@@ -7,7 +7,7 @@ using Xunit;
 
 namespace TestAchtergrond
 {
-    public class Tiles
+    public class TilesTest
     {
         [Fact]
         public void word_de_juiste_tegel_gevonden()
@@ -18,22 +18,24 @@ namespace TestAchtergrond
                 LinksBoven = new Coordinaat(116000, 580000),
                 TegelBreedte = 1000,
                 TegelHoogte = 1000,
-                Url = "file://test",
+                Url = "{X_Links},{Y_Boven},{X_Rechts},{Y_Onder},{Rij},{Kolom}",
             };
 
-            var tiles = config.GetTilesForRectangle(new[] {new Coordinaat(116100, 579500), new Coordinaat(116200, 579600) });
+            var tiles = config.GetTilesForRectangle(new[] {new Coordinaat(config.LinksBoven.X + 1, config.LinksBoven.Y - 1), new Coordinaat(config.LinksBoven.X + 2, config.LinksBoven.Y - 2)});
 
             PAssert.That(() => tiles.Count() == 1);
 
             var tile = tiles.Single();
-            PAssert.That(() => tile.TopLeft.X == 116000);
-            PAssert.That(() => tile.TopLeft.Y == 580000);
+            PAssert.That(() => tile.TopLeft.X == config.LinksBoven.X);
+            PAssert.That(() => tile.TopLeft.Y == config.LinksBoven.Y);
 
-            PAssert.That(() => tile.TopLeft.X == tile.BottomLeft.X);
-            PAssert.That(() => tile.TopLeft.Y == tile.BottomLeft.Y + config.TegelHoogte);
+            PAssert.That(() => tile.BottomRight.X == config.LinksBoven.X + config.TegelBreedte);
+            PAssert.That(() => tile.BottomRight.Y == config.LinksBoven.Y - config.TegelHoogte);
 
             PAssert.That(() => tile.Rij == 1);
             PAssert.That(() => tile.Kolom == 1);
+
+            PAssert.That(() => tile.FormattedUrl() == "116000,580000,117000,579000,1,1");
         }
 
         [Fact]
