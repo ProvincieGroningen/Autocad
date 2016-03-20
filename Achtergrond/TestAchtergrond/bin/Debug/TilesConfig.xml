@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<TilesConfig>
+  <TileConfig>
+    <Naam>LL - Achtergrond (lage resolutie)</Naam>
+    <LinksBoven>
+      <X>10</X>
+      <Y>10</Y>
+    </LinksBoven>
+    <TegelBreedte>250</TegelBreedte>
+    <TegelHoogte>250</TegelHoogte>
+    <Url>file://l:/iets/verder/luchtfoto{X}z{Y}.ecw</Url>
+  </TileConfig>
+  <TileConfig>
+    <Naam>LH - Achtergrond (hoge resolutie)</Naam>
+    <LinksBoven>
+      <X>10</X>
+      <Y>10</Y>
+    </LinksBoven>
+    <TegelBreedte>250</TegelBreedte>
+    <TegelHoogte>250</TegelHoogte>
+    <Url>http://werafsdfaswef/service=WMS&amp;{Rij}z{Kolom}.ecw</Url>
+  </TileConfig>
+  <TileConfig>
+    <Naam>BP - Bestemmingsplan</Naam>
+    <LinksBoven>
+      <X>116000</X>
+      <Y>580000</Y>
+    </LinksBoven>
+    <TegelBreedte>1000</TegelBreedte>
+    <TegelHoogte>1000</TegelHoogte>
+    <Url>file://E:/Ortho/Beelden_RGB_ecw_tegels/2015_{X}_{Y}_RGB_hrl.ecw</Url>
+  </TileConfig>
+</TilesConfig>

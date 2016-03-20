@@ -13,11 +13,11 @@ namespace ProvincieGroningen.AutoCad
             public TileConfig TileConfig;
             public int Rij;
             public int Kolom;
-            public Point3d TopLeft;
-            public Point3d BottomLeft;
+            public Coordinaat TopLeft;
+            public Coordinaat BottomLeft;
         }
 
-        public static IEnumerable<TileReference> GetTilesForRectangle(this TileConfig tileConfig, Point3d[] rectangle)
+        public static IEnumerable<TileReference> GetTilesForRectangle(this TileConfig tileConfig, Coordinaat[] rectangle)
         {
             var minX = rectangle.Min(r => r.X);
             var maxX = rectangle.Max(r => r.X);
@@ -47,8 +47,8 @@ namespace ProvincieGroningen.AutoCad
                         TileConfig = tileConfig,
                         Kolom = kolom,
                         Rij = rij,
-                        TopLeft = new Point3d(x, y, 0),
-                        BottomLeft = new Point3d(x, y - tileConfig.TegelHoogte, 0),
+                        TopLeft = new Coordinaat(x, y),
+                        BottomLeft = new Coordinaat(x, y - tileConfig.TegelHoogte),
                     };
                 }
             }

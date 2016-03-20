@@ -9,7 +9,7 @@ namespace ProvincieGroningen.AutoCad
 {
     public class RasterImage
     {
-        public static void AttachRasterImage(Point3d insertionPoint, FileInfo imageFile, double width, double height)
+        public static void AttachRasterImage(Point3d insertionPoint, FileInfo imageFile, decimal width, decimal height)
         {
             var acCurDb = Application.DocumentManager.MdiActiveDocument.Database;
 
@@ -42,10 +42,10 @@ namespace ProvincieGroningen.AutoCad
             }
         }
 
-        private static CoordinateSystem3d GetCoordinateSystem(Point3d insertionPoint, double width, double height)
+        private static CoordinateSystem3d GetCoordinateSystem(Point3d insertionPoint, decimal width, decimal height)
         {
-            var widthVector = new Vector3d(width, 0, 0);
-            var heightVector = new Vector3d(0, height, 0);
+            var widthVector = new Vector3d((double)width, 0, 0);
+            var heightVector = new Vector3d(0, (double)height, 0);
 
             var insertionPoint2 = new Point3d(insertionPoint.X, insertionPoint.Y, 0);
             var coordinateSystem = new CoordinateSystem3d(insertionPoint2, widthVector, heightVector);

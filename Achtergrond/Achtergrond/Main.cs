@@ -44,10 +44,10 @@ namespace ProvincieGroningen.AutoCad
 
         IEnumerable<TileFile> ImagesForRectangle(Point3d[] rectangle, TileConfig config)
         {
-            return config.GetTilesForRectangle(rectangle).Select(tile => new TileFile
+            return config.GetTilesForRectangle(rectangle.ToCoordinaat()).Select(tile => new TileFile
             {
                 File = Download(tile.FormattedUrl()),
-                BottomLeft = tile.BottomLeft,
+                BottomLeft = tile.BottomLeft.ToPoint3D(),
             });
         }
 
@@ -68,7 +68,6 @@ namespace ProvincieGroningen.AutoCad
 
             public void Dispose()
             {
-                
             }
         }
     }
