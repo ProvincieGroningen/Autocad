@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
 using Autodesk.AutoCAD.ApplicationServices.Core;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.Runtime;
@@ -50,33 +48,18 @@ namespace ProvincieGroningen.AutoCad
             }
         }
 
-        IEnumerable<TileFile> ImagesForRectangle(Point3d[] rectangle, TileConfig config)
+        static IEnumerable<Utilities.TileFile> ImagesForRectangle(Point3d[] rectangle, TileConfig config)
         {
-            return config.GetTilesForRectangle(rectangle.ToCoordinaat()).Select(tile => new TileFile
-            {
-                File = Download(tile.FormattedUrl()),
-                BottomLeft = new Point3d((double) tile.TopLeft.X, (double) tile.BottomRight.Y, 0),
-            });
-        }
+            var dbFileName = Application.DocumentManager.CurrentDocument.Database.Filename;
+            var dbPath = new FileInfo(dbFileName).DirectoryName;
+            var tilesForRectangle = config.GetTilesForRectangle(rectangle.ToCoordinaat());
 
-        private FileInfo Download(string formattedUrl)
-        {
-            using (var client = new WebClient())
-            {
-                var fileName = Path.GetTempFileName();
-                client.DownloadFile(formattedUrl, fileName);
-                return new FileInfo(fileName);
-            }
-        }
-
-        class TileFile : IDisposable
-        {
-            public FileInfo File;
-            public Point3d BottomLeft;
-
-            public void Dispose()
-            {
-            }
+            return tilesForRectangle
+                .Select(tile => new Utilities.TileFile
+                {
+                    File = Utilities.GetFile(tile.FormattedUrl(), Path.Combine(dbPath, tile.FileName())),
+                    BottomLeft = new Point3d((double) tile.TopLeft.X, (double) tile.BottomRight.Y, 0),
+                });
         }
     }
 }

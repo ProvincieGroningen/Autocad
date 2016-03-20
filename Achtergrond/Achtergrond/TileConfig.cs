@@ -32,6 +32,9 @@ namespace ProvincieGroningen.AutoCad
 
         [XmlElement]
         public string Url { get; set; }
+
+        [XmlElement]
+        public string Extensie { get; set; }
     }
 
     public class Coordinaat

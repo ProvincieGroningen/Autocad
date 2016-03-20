@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
-using Autodesk.AutoCAD.Geometry;
+using System.Text.RegularExpressions;
 
 namespace ProvincieGroningen.AutoCad
 {
@@ -64,6 +65,14 @@ namespace ProvincieGroningen.AutoCad
                 .Replace("{X_Rechts}", reference.BottomRight.X.ToString(CultureInfo.InvariantCulture))
                 .Replace("{Y_Onder}", reference.BottomRight.Y.ToString(CultureInfo.InvariantCulture))
                 ;
+        }
+
+        static Regex ValidateFileNameRegEx = new Regex("[" + Regex.Escape(new string(Path.GetInvalidFileNameChars())) + "]");
+
+        public static string FileName(this TileReference reference)
+        {
+            var fileName = $@"{reference.TileConfig.Naam}_{reference.Rij}_{reference.Kolom}";
+            return ValidateFileNameRegEx.Replace(fileName, "_") + reference.TileConfig.Extensie;
         }
     }
 }

@@ -2,27 +2,7 @@
 
 <TilesConfig>
   <TileConfig>
-    <Naam>LL - Achtergrond (lage resolutie)</Naam>
-    <LinksBoven>
-      <X>10</X>
-      <Y>10</Y>
-    </LinksBoven>
-    <TegelBreedte>250</TegelBreedte>
-    <TegelHoogte>250</TegelHoogte>
-    <Url>file://l:/iets/verder/luchtfoto{X}z{Y}.ecw</Url>
-  </TileConfig>
-  <TileConfig>
-    <Naam>LH - Achtergrond (hoge resolutie)</Naam>
-    <LinksBoven>
-      <X>10</X>
-      <Y>10</Y>
-    </LinksBoven>
-    <TegelBreedte>250</TegelBreedte>
-    <TegelHoogte>250</TegelHoogte>
-    <Url>http://werafsdfaswef/service=WMS&amp;{Rij}z{Kolom}.ecw</Url>
-  </TileConfig>
-  <TileConfig>
-    <Naam>BP - Bestemmingsplan</Naam>
+    <Naam>LH - Luchtfoto 2015 - Hoge resolutie</Naam>
     <LinksBoven>
       <!-- Let op!! De naam van het luchtfotobestand bevat het coordinaat linksonder. Het Y-coordinaat linksboven van de luchtfoto is daarom 1000 meer.-->
       <X>116000</X>
@@ -30,6 +10,24 @@
     </LinksBoven>
     <TegelBreedte>1000</TegelBreedte>
     <TegelHoogte>1000</TegelHoogte>
-    <Url>file://E:/Ortho/Beelden_RGB_ecw_tegels/2015_{X}_{Y}_RGB_hrl.ecw</Url>
+    <!-- Gebruik placeholders:
+      {X} - rij in tegelmatrix
+      {Y} - kolom in tegelmatrix
+      {X_Links}{Y_Links}{X_Rechts}{Y_Rechts} - coordinaten van de betreffende tegel
+    -->
+    <Url>file://E:/Ortho/Beelden_RGB_ecw_tegels/2015_{X_Links}_{Y_Onder}_RGB_hrl.ecw</Url>
+    <Extensie>.ecw</Extensie>
+  </TileConfig>
+
+  <TileConfig>
+    <Naam>BP - Bestemmingsplan (werkt nog niet)</Naam>
+    <LinksBoven>
+      <X>10</X>
+      <Y>10</Y>
+    </LinksBoven>
+    <TegelBreedte>250</TegelBreedte>
+    <TegelHoogte>250</TegelHoogte>
+    <Url>https://geodata.nationaalgeoregister.nl/plu/wms?request=GetCapabilities</Url>
+    <Extensie>.png</Extensie>
   </TileConfig>
 </TilesConfig>
