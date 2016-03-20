@@ -30,15 +30,23 @@ namespace ProvincieGroningen.AutoCad
                 return;
 
             var rectangle = AutocadUtils.GetRectangle();
-            if (rectangle.Length != 2)
+
+            if (rectangle?.Length != 2)
                 return;
 
-            foreach (var tileFile in ImagesForRectangle(rectangle, config))
+            try
             {
-                using (tileFile)
+                foreach (var tileFile in ImagesForRectangle(rectangle, config))
                 {
-                    RasterImage.AttachRasterImage(tileFile.BottomLeft, tileFile.File, config.TegelBreedte, config.TegelHoogte);
+                    using (tileFile)
+                    {
+                        RasterImage.AttachRasterImage(tileFile.BottomLeft, tileFile.File, config.TegelBreedte, config.TegelHoogte);
+                    }
                 }
+            }
+            catch (System.Exception ex)
+            {
+                Utilities.HandleError(ex);
             }
         }
 
@@ -47,7 +55,7 @@ namespace ProvincieGroningen.AutoCad
             return config.GetTilesForRectangle(rectangle.ToCoordinaat()).Select(tile => new TileFile
             {
                 File = Download(tile.FormattedUrl()),
-                BottomLeft = tile.BottomLeft.ToPoint3D(),
+                BottomLeft = new Point3d((double) tile.TopLeft.X, (double) tile.BottomRight.Y, 0),
             });
         }
 
