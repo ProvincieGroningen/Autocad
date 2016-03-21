@@ -2,14 +2,15 @@
 using System.Linq;
 using System.Xml.Serialization;
 using ExpressionToCodeLib;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProvincieGroningen.AutoCad;
-using Xunit;
 
 namespace TestAchtergrond
 {
+    [TestClass]
     public class TilesTest
     {
-        [Fact]
+        [TestMethod]
         public void word_de_juiste_tegel_gevonden()
         {
             var config = new TileConfig
@@ -21,7 +22,7 @@ namespace TestAchtergrond
                 Url = "{X_Links},{Y_Boven},{X_Rechts},{Y_Onder},{Rij},{Kolom}",
             };
 
-            var tiles = config.GetTilesForRectangle(new[] {new Coordinaat(config.LinksBoven.X + 1, config.LinksBoven.Y - 1), new Coordinaat(config.LinksBoven.X + 2, config.LinksBoven.Y - 2)});
+            var tiles = config.GetTilesForRectangle(new[] { new Coordinaat(config.LinksBoven.X + 1, config.LinksBoven.Y - 1), new Coordinaat(config.LinksBoven.X + 2, config.LinksBoven.Y - 2) });
 
             PAssert.That(() => tiles.Count() == 1);
 
@@ -38,7 +39,7 @@ namespace TestAchtergrond
             PAssert.That(() => tile.FormattedUrl() == "116000,580000,117000,579000,1,1");
         }
 
-        [Fact]
+        [TestMethod]
         public void wordt_de_configuratie_goed_ingelezen()
         {
             var config = @"<?xml version=""1.0"" encoding=""utf-8""?>
@@ -61,7 +62,7 @@ namespace TestAchtergrond
             using (var sr = new StringReader(config))
             {
                 var tilesConfig = (TilesConfig)s.Deserialize(sr);
-                PAssert.That(() => tilesConfig.Count==1 );
+                PAssert.That(() => tilesConfig.Count == 1);
                 PAssert.That(() => tilesConfig.Single().Naam == "Test");
             }
         }
