@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Autodesk.AutoCAD.ApplicationServices.Core;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.Runtime;
@@ -13,7 +14,7 @@ namespace ProvincieGroningen.AutoCad
         // ReSharper disable once UnusedMember.Global
         public void AttachRasterImage()
         {
-            var epsg = "EPSG:28992";
+            var epsg = "Netherlands-RDNew";
 
             if (!AutocadUtils.IsCoordinateSystem(epsg))
             {

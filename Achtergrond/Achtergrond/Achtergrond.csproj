@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -71,6 +71,15 @@
     <Reference Include="AdWindows, Version=6.3.0.14, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoCAD.NET.20.1.0\lib\45\AdWindows.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="Autodesk.Map.Platform">
+      <HintPath>..\..\..\..\..\Program Files\Autodesk\AutoCAD 2016\Map\Autodesk.Map.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="OSGeo.MapGuide.Foundation">
+      <HintPath>..\..\..\..\..\Program Files\Autodesk\AutoCAD 2016\Map\OSGeo.MapGuide.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="OSGeo.MapGuide.PlatformBase">
+      <HintPath>..\..\..\..\..\Program Files\Autodesk\AutoCAD 2016\Map\OSGeo.MapGuide.PlatformBase.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

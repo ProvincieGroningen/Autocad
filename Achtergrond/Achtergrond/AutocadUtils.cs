@@ -3,6 +3,7 @@ using System.Linq;
 using Autodesk.AutoCAD.ApplicationServices.Core;
 using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Geometry;
+using Autodesk.Gis.Map.Platform;
 
 namespace ProvincieGroningen.AutoCad
 {
@@ -63,10 +64,9 @@ namespace ProvincieGroningen.AutoCad
         }
 
 
-        public static bool IsCoordinateSystem(string srs)
+        public static bool IsCoordinateSystem(string coordinateSystemId)
         {
-            //TODO: Fix this
-            return true;
+            return AcMapMap.GetCurrentMap().GetCoordinateSystemId() == coordinateSystemId;
         }
     }
 }
