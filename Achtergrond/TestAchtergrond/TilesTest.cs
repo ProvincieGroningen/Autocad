@@ -11,18 +11,18 @@ namespace TestAchtergrond
     public class TilesTest
     {
         [TestMethod]
-        public void word_de_juiste_tegel_gevonden()
+        public void wordt_de_juiste_tegel_gevonden()
         {
             var config = new TileConfig
             {
-                Naam = nameof(word_de_juiste_tegel_gevonden),
+                Naam = nameof(wordt_de_juiste_tegel_gevonden),
                 LinksBoven = new Coordinaat(116000, 580000),
                 TegelBreedte = 1000,
                 TegelHoogte = 1000,
                 Url = "{X_Links},{Y_Boven},{X_Rechts},{Y_Onder},{Rij},{Kolom}",
             };
 
-            var tiles = config.GetTilesForRectangle(new[] { new Coordinaat(config.LinksBoven.X + 1, config.LinksBoven.Y - 1), new Coordinaat(config.LinksBoven.X + 2, config.LinksBoven.Y - 2) });
+            var tiles = config.GetTilesForRectangle(new[] {new Coordinaat(config.LinksBoven.X + 1, config.LinksBoven.Y - 1), new Coordinaat(config.LinksBoven.X + 2, config.LinksBoven.Y - 2)});
 
             PAssert.That(() => tiles.Count() == 1);
 
@@ -37,6 +37,40 @@ namespace TestAchtergrond
             PAssert.That(() => tile.Kolom == 1);
 
             PAssert.That(() => tile.FormattedUrl() == "116000,580000,117000,579000,1,1");
+        }
+
+        [TestMethod]
+        public void buiten_het_raster_geen_tegel_links()
+        {
+            var config = new TileConfig
+            {
+                Naam = nameof(buiten_het_raster_geen_tegel_links),
+                LinksBoven = new Coordinaat(116000, 580000),
+                TegelBreedte = 1000,
+                TegelHoogte = 1000,
+                Url = "{X_Links},{Y_Boven},{X_Rechts},{Y_Onder},{Rij},{Kolom}",
+            };
+
+            var tiles = config.GetTilesForRectangle(new[] {new Coordinaat(config.LinksBoven.X - 2, config.LinksBoven.Y), new Coordinaat(config.LinksBoven.X - 1, config.LinksBoven.Y + 1)});
+
+            PAssert.That(() => tiles.Count() == 0);
+        }
+
+        [TestMethod]
+        public void buiten_het_raster_geen_tegel_boven()
+        {
+            var config = new TileConfig
+            {
+                Naam = nameof(buiten_het_raster_geen_tegel_links),
+                LinksBoven = new Coordinaat(116000, 580000),
+                TegelBreedte = 1000,
+                TegelHoogte = 1000,
+                Url = "{X_Links},{Y_Boven},{X_Rechts},{Y_Onder},{Rij},{Kolom}",
+            };
+
+            var tiles = config.GetTilesForRectangle(new[] { new Coordinaat(config.LinksBoven.X, config.LinksBoven.Y - 1), new Coordinaat(config.LinksBoven.X + 1, config.LinksBoven.Y - 2) });
+
+            PAssert.That(() => tiles.Count() == 0);
         }
 
         [TestMethod]
@@ -58,14 +92,13 @@ namespace TestAchtergrond
 </TilesConfig>
 ";
 
-            var s = new XmlSerializer(typeof(TilesConfig));
+            var s = new XmlSerializer(typeof (TilesConfig));
             using (var sr = new StringReader(config))
             {
-                var tilesConfig = (TilesConfig)s.Deserialize(sr);
+                var tilesConfig = (TilesConfig) s.Deserialize(sr);
                 PAssert.That(() => tilesConfig.Count == 1);
                 PAssert.That(() => tilesConfig.Single().Naam == "Test");
             }
         }
-
     }
 }
