@@ -53,13 +53,14 @@ namespace ProvincieGroningen.AutoCad
             var dbFileName = Application.DocumentManager.CurrentDocument.Database.Filename;
             var dbPath = new FileInfo(dbFileName).DirectoryName;
             var tilesForRectangle = config.GetTilesForRectangle(rectangle.ToCoordinaat());
-
-            return tilesForRectangle
+            var tileFiles = tilesForRectangle
+                .AsParallel()
                 .Select(tile => new Utilities.TileFile
                 {
                     File = Utilities.GetFile(tile.FormattedUrl(), Path.Combine(dbPath, tile.FileName())),
                     BottomLeft = new Point3d((double) tile.TopLeft.X, (double) tile.BottomRight.Y, 0),
                 });
+            return tileFiles;
         }
     }
 }
