@@ -20,14 +20,14 @@
   </TileConfig>
 
   <TileConfig>
-    <Naam>BP - Bestemmingsplan (werkt nog niet)</Naam>
+    <Naam>BP - Bestemmingsplan</Naam>
     <LinksBoven>
-      <X>10</X>
-      <Y>10</Y>
+      <X>116000</X>
+      <Y>590000</Y>
     </LinksBoven>
-    <TegelBreedte>250</TegelBreedte>
-    <TegelHoogte>250</TegelHoogte>
-    <Url>https://geodata.nationaalgeoregister.nl/plu/wms?request=GetCapabilities</Url>
+    <TegelBreedte>100</TegelBreedte>
+    <TegelHoogte>100</TegelHoogte>
+    <Url>http://afnemers.ruimtelijkeplannen.nl/afnemers/services?LAYERS=BP:HuidigeBestemming&amp;FORMAT=image%2Fpng&amp;TRANSPARENT=TRUE&amp;SERVICE=WMS&amp;VERSION=1.1.1&amp;REQUEST=GetMap&amp;STYLES=&amp;SRS=EPSG%3A28992&amp;BBOX={X_Links},{Y_Onder},{X_Rechts},{Y_Boven}&amp;WIDTH=1000&amp;HEIGHT=1000</Url>
     <Extensie>.png</Extensie>
   </TileConfig>
 </TilesConfig>
