@@ -27,7 +27,7 @@ namespace ProvincieGroningen.AutoCad
             if (config == null)
                 return;
 
-            var rectangle = AutocadUtils.GetRectangle();
+            var rectangle = AutocadUtils.GetRectangle("Rechthoek");
 
             if (rectangle?.Length != 2)
                 return;
