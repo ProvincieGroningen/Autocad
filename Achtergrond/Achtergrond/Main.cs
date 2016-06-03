@@ -4,6 +4,7 @@ using System.Linq;
 using Autodesk.AutoCAD.ApplicationServices.Core;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.Runtime;
+using Autodesk.Windows;
 
 namespace ProvincieGroningen.AutoCad
 {
@@ -40,12 +41,20 @@ namespace ProvincieGroningen.AutoCad
 
             try
             {
-                foreach (var tileFile in ImagesForRectangle(rectangle, config))
+                var imagesForRectangle = ImagesForRectangle(rectangle, config).ToArray();
+                using (var autocadProgress = new ProgressMeter())
                 {
-                    using (tileFile)
+                    autocadProgress.SetLimit(imagesForRectangle.Length);
+                    autocadProgress.Start("Tegels worden in de tekening geplaatst");
+                    foreach (var tileFile in imagesForRectangle)
                     {
-                        RasterImage.AttachRasterImage(tileFile.BottomLeft, tileFile.File, config.TegelBreedte, config.TegelHoogte);
+                        using (tileFile)
+                        {
+                            RasterImage.AttachRasterImage(tileFile.BottomLeft, tileFile.File, config.TegelBreedte, config.TegelHoogte);
+                        }
+                        autocadProgress.MeterProgress();
                     }
+                    autocadProgress.Stop();
                 }
             }
             catch (System.Exception ex)
@@ -54,19 +63,36 @@ namespace ProvincieGroningen.AutoCad
             }
         }
 
-        static IEnumerable<Utilities.TileFile> ImagesForRectangle(Point3d[] rectangle, TileConfig config)
+        static Utilities.TileFile[] ImagesForRectangle(Point3d[] rectangle, TileConfig config)
         {
             var dbFileName = Application.DocumentManager.CurrentDocument.Database.Filename;
             var dbPath = new FileInfo(dbFileName).DirectoryName;
-            var tilesForRectangle = config.GetTilesForRectangle(rectangle.ToCoordinaat());
+            var tilesForRectangle = config.GetTilesForRectangle(rectangle.ToCoordinaat()).ToArray();
+            var autocadProgress = new ProgressMeter();
+            autocadProgress.SetLimit(tilesForRectangle.Length);
+            autocadProgress.Start("Tiles worden verzameld");
             var tileFiles = tilesForRectangle
                 .AsParallel()
-                .Select(tile => new Utilities.TileFile
-                {
-                    File = Utilities.GetFile(tile.FormattedUrl(), Path.Combine(dbPath, tile.FileName())),
-                    BottomLeft = new Point3d((double) tile.TopLeft.X, (double) tile.BottomRight.Y, 0),
-                });
+                .Select(tile => GetTileFile(tile, dbPath, autocadProgress))
+                .ToArray();
+            autocadProgress.Stop();
+            autocadProgress.Dispose();
             return tileFiles;
+        }
+
+        static readonly object _lock = new object();
+
+        private static Utilities.TileFile GetTileFile(TileConfigExtensions.TileReference tile, string dbPath, ProgressMeter progress)
+        {
+            lock (_lock)
+            {
+                progress.MeterProgress();
+            }
+            return new Utilities.TileFile
+            {
+                File = Utilities.GetFile(tile.FormattedUrl(), Path.Combine(dbPath, tile.FileName())),
+                BottomLeft = new Point3d((double) tile.TopLeft.X, (double) tile.BottomRight.Y, 0),
+            };
         }
     }
 }
