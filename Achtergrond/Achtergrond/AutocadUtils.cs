@@ -33,7 +33,7 @@ namespace ProvincieGroningen.AutoCad
             }
         }
 
-        public static Point3d[] GetRectangle()
+        public static Point3d[] GetRectangle(string opdracht)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace ProvincieGroningen.AutoCad
                     Application.DocumentManager
                         .MdiActiveDocument
                         .Editor
-                        .GetPoint(new PromptPointOptions("Geef het eerst hoekpunt"));
+                        .GetPoint(new PromptPointOptions($"{opdracht}: Geef het eerst hoekpunt"));
 
                 if (start.Status == PromptStatus.Cancel)
                     return null;
@@ -49,7 +49,7 @@ namespace ProvincieGroningen.AutoCad
                 var corner = Application.DocumentManager
                     .MdiActiveDocument
                     .Editor
-                    .GetCorner("Geef het volgende hoekpunt", start.Value);
+                    .GetCorner($"{ opdracht}:Geef het volgende hoekpunt", start.Value);
 
                 if (corner.Status == PromptStatus.Cancel)
                     return null;

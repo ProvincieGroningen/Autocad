@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using Autodesk.AutoCAD.ApplicationServices.Core;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.Runtime;
@@ -26,12 +25,18 @@ namespace ProvincieGroningen.AutoCad
             var command = AutocadUtils.GetCommand("Selecteer de gewenste laag:", configs.Select(c => c.Naam).ToArray(), configs.Select(c => c.Naam).First());
             var config = configs.First(c => c.Naam.StartsWith(command));
             if (config == null)
+            {
+                Application.ShowAlertDialog($"De configuratie voor {command} is niet gevonden.");
                 return;
+            }
 
-            var rectangle = AutocadUtils.GetRectangle();
+            var rectangle = AutocadUtils.GetRectangle("Rechthoek");
 
             if (rectangle?.Length != 2)
+            {
+                Application.ShowAlertDialog($"Kan geen rechtoek bepalen (aantal hoekpunten: {rectangle?.Length.ToString() ?? "0"}).");
                 return;
+            }
 
             try
             {
