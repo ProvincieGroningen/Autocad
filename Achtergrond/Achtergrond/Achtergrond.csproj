@@ -73,22 +73,17 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Autodesk.Map.Platform">
-      <HintPath>..\..\..\..\..\Program Files\Autodesk\AutoCAD 2016\Map\Autodesk.Map.Platform.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\Autodesk\AutoCAD 2017\Map\Autodesk.Map.Platform.dll</HintPath>
     </Reference>
     <Reference Include="OSGeo.MapGuide.Foundation">
-      <HintPath>..\..\..\..\..\Program Files\Autodesk\AutoCAD 2016\Map\OSGeo.MapGuide.Foundation.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\Autodesk\AutoCAD 2017\Map\OSGeo.MapGuide.Foundation.dll</HintPath>
     </Reference>
     <Reference Include="OSGeo.MapGuide.PlatformBase">
-      <HintPath>..\..\..\..\..\Program Files\Autodesk\AutoCAD 2016\Map\OSGeo.MapGuide.PlatformBase.dll</HintPath>
+      <HintPath>..\..\..\..\..\Program Files\Autodesk\AutoCAD 2017\Map\OSGeo.MapGuide.PlatformBase.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
