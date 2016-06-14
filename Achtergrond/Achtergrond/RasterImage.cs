@@ -36,10 +36,23 @@ namespace ProvincieGroningen.AutoCad
                     // Connect the raster definition and image together so the definition does not appear as "unreferenced" in the External References palette.
                     Autodesk.AutoCAD.DatabaseServices.RasterImage.EnableReactors(true);
                     acRaster.AssociateRasterDef(rasterImageDef);
+
+                    MoveToBack(acTrans, blockTableRecord, acRaster.ObjectId);
                 }
 
                 acTrans.Commit();
             }
+        }
+
+
+        private static void MoveToBack(Transaction tr, BlockTableRecord btr, ObjectId objectId)
+        {
+            // btr.DowngradeOpen();
+            var dot = (DrawOrderTable) tr.GetObject(
+                    btr.DrawOrderTableId,
+                    OpenMode.ForWrite
+                    );
+            dot.MoveToBottom(new ObjectIdCollection(new [] {objectId}));
         }
 
         private static CoordinateSystem3d GetCoordinateSystem(Point3d insertionPoint, decimal width, decimal height)
