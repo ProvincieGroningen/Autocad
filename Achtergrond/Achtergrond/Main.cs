@@ -95,7 +95,7 @@ namespace ProvincieGroningen.AutoCad
             }
             return new Utilities.TileFile
             {
-                File = Utilities.GetFile(tile.FormattedUrl(), Path.Combine(dbPath, tile.FileName())),
+                File = Utilities.GetFile(tile.FormattedUrl(), Path.Combine(dbPath, tile.FileName()), tile.TileConfig.Mimetype),
                 BottomLeft = new Point3d((double) tile.TopLeft.X, (double) tile.BottomRight.Y, 0),
             };
         }
