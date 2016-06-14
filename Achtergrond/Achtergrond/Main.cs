@@ -68,16 +68,21 @@ namespace ProvincieGroningen.AutoCad
             var dbFileName = Application.DocumentManager.CurrentDocument.Database.Filename;
             var dbPath = new FileInfo(dbFileName).DirectoryName;
             var tilesForRectangle = config.GetTilesForRectangle(rectangle.ToCoordinaat()).ToArray();
+            if (tilesForRectangle.Length == 0)
+                return new Utilities.TileFile[0];
+
             var autocadProgress = new ProgressMeter();
             autocadProgress.SetLimit(tilesForRectangle.Length);
             autocadProgress.Start("Tiles worden verzameld");
+            var firstTile = GetTileFile(tilesForRectangle.First(), dbPath, autocadProgress);
             var tileFiles = tilesForRectangle
+                .Skip(1)
                 .AsParallel()
                 .Select(tile => GetTileFile(tile, dbPath, autocadProgress))
                 .ToArray();
             autocadProgress.Stop();
             autocadProgress.Dispose();
-            return tileFiles;
+            return tileFiles.Union(new[] {firstTile}).ToArray();
         }
 
         static readonly object _lock = new object();
