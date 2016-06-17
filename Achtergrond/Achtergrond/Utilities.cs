@@ -11,7 +11,14 @@ namespace ProvincieGroningen.AutoCad
     {
         public static void HandleError(Exception ex)
         {
-            Application.ShowAlertDialog(ex.Message + " " + ex.StackTrace);
+            if (ex is AchtergrondException)
+            {
+                Application.ShowAlertDialog(ex.Message);
+            }
+            else
+            {
+                Application.ShowAlertDialog(ex.Message + " " + ex.StackTrace);
+            }
         }
 
         public static FileInfo GetFile(string formattedUrl, string fileName, string mimeType)
@@ -21,7 +28,7 @@ namespace ProvincieGroningen.AutoCad
                 var fileInfo = new FileInfo(formattedUrl.Replace("file://", ""));
                 if (!fileInfo.Exists)
                 {
-                    throw new Exception($"Bestand {formattedUrl} niet gevonden.");
+                    throw new AchtergrondException($"Bestand {formattedUrl} niet gevonden.");
                 }
                 return fileInfo;
             }
@@ -37,8 +44,7 @@ namespace ProvincieGroningen.AutoCad
                 var responseStream = response.GetResponseStream();
                 if (responseStream == null)
                 {
-                    throw new Exception($"Deze url {formattedUrl} levert niet de verwachtte respons.");
-
+                    throw new AchtergrondException($"Deze url {formattedUrl} levert niet de verwachtte respons.");
                 }
                 if (response.ContentType == mimeType)
                 {
@@ -52,7 +58,7 @@ namespace ProvincieGroningen.AutoCad
                 {
                     var data = reader.ReadToEnd();
                     var contentType = response.ContentType;
-                    throw new Exception($"Onverwachte response: {contentType} ({data.Substring(0, 100)})");
+                    throw new AchtergrondException($"Onverwachte response: {contentType} ({data.Substring(0, 100)})");
                 }
             }
         }

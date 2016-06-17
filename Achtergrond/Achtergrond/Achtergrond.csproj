@@ -87,6 +87,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AchtergrondException.cs" />
     <Compile Include="AutocadUtils.cs" />
     <Compile Include="RasterImage.cs" />
     <Compile Include="Main.cs" />
