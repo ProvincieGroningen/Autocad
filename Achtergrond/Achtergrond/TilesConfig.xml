@@ -6,7 +6,7 @@
     <LinksBoven>
       <!-- Let op!! De naam van het luchtfotobestand bevat het coordinaat linksonder. Het Y-coordinaat linksboven van de luchtfoto is daarom 1000 meer.-->
       <X>116000</X>
-      <Y>590000</Y>
+      <Y>650000</Y>
     </LinksBoven>
     <TegelBreedte>1000</TegelBreedte>
     <TegelHoogte>1000</TegelHoogte>
@@ -15,9 +15,20 @@
       {Y} - kolom in tegelmatrix
       {X_Links}{Y_Links}{X_Rechts}{Y_Rechts} - coordinaten van de betreffende tegel
     -->
-    <Url>file://E:/Ortho/Beelden_RGB_ecw_tegels/2015_{X_Links}_{Y_Onder}_RGB_hrl.ecw</Url>
+    <Url>file://L:/Luchtfoto/2015/Hoge_resolutie/ECW_tegels/2015_{X_Links}_{Y_Onder}_RGB_hrl.ecw</Url>
     <Extensie>.ecw</Extensie>
-    <Mimetype></Mimetype>
+  </TileConfig>
+
+  <TileConfig>
+    <Naam>L14 - Luchtfoto 2014 - Hoge resolutie</Naam>
+    <LinksBoven>
+      <X>216000</X>
+      <Y>595000</Y>
+    </LinksBoven>
+    <TegelBreedte>1000</TegelBreedte>
+    <TegelHoogte>1000</TegelHoogte>
+    <Url>file://L:\Luchtfoto\2014\Hoge_resolutie\ECW_tegels/2014_{X_Links}_{Y_Onder}_RGB_hrl.ecw</Url>
+    <Extensie>.ecw</Extensie>
   </TileConfig>
 
   <TileConfig>
@@ -34,17 +45,15 @@
   </TileConfig>
 
   <TileConfig>
-    <Naam>Top250</Naam>
+    <Naam>T10 - Top10NL</Naam>
     <LinksBoven>
       <X>116000</X>
-      <Y>590000</Y>
+      <Y>611063</Y>
     </LinksBoven>
     <TegelBreedte>100</TegelBreedte>
     <TegelHoogte>100</TegelHoogte>
-    <Url>https://geodata.nationaalgeoregister.nl/top250raster/wms?LAYERS=top250raster&amp;FORMAT=image%2Fpng&amp;TRANSPARENT=TRUE&amp;SERVICE=WMS&amp;VERSION=1.1.1&amp;REQUEST=GetMap&amp;STYLES=&amp;SRS=EPSG%3A28992&amp;BBOX={X_Links},{Y_Onder},{X_Rechts},{Y_Boven}&amp;WIDTH=1000&amp;HEIGHT=1000</Url>
+    <Url>https://geodata.nationaalgeoregister.nl/top10nlv2/wms?LAYERS=top10nlv2&amp;FORMAT=image%2Fpng&amp;TRANSPARENT=TRUE&amp;SERVICE=WMS&amp;VERSION=1.1.1&amp;REQUEST=GetMap&amp;STYLES=&amp;SRS=EPSG%3A28992&amp;BBOX={X_Links},{Y_Onder},{X_Rechts},{Y_Boven}&amp;WIDTH=1000&amp;HEIGHT=1000</Url>
     <Extensie>.png</Extensie>
     <Mimetype>image/png</Mimetype>
   </TileConfig>
-
-
 </TilesConfig>
