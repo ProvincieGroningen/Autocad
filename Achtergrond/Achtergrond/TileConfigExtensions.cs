@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Autodesk.AutoCAD.ApplicationServices.Core;
 
 namespace ProvincieGroningen.AutoCad
 {
@@ -33,8 +34,16 @@ namespace ProvincieGroningen.AutoCad
             var maxKolom = (int) Math.Floor((maxX - tileConfig.LinksBoven.X)/tileConfig.TegelBreedte) + 1;
             var maxRij = (int) Math.Floor((tileConfig.LinksBoven.Y - minY)/tileConfig.TegelHoogte) + 1;
 
-            if (minKolom < 0) minKolom = 0;
-            if (minRij < 0) minRij = 0;
+            if (minKolom < 0)
+            {
+                minKolom = 0;
+                Application.ShowAlertDialog("Linkerkant valt buiten het bereik van de configuratie");
+            }
+            if (minRij < 0)
+            {
+                minRij = 0;
+                Application.ShowAlertDialog("Onderkant valt buiten het bereik van de configuratie");
+            }
             if (maxKolom < 0 || maxRij < 0) yield break;
 
             for (var kolom = minKolom; kolom <= maxKolom; kolom++)
