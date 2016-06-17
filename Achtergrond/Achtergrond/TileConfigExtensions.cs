@@ -76,7 +76,7 @@ namespace ProvincieGroningen.AutoCad
                 ;
         }
 
-        static Regex ValidateFileNameRegEx = new Regex("[" + Regex.Escape(new string(Path.GetInvalidFileNameChars())) + "]");
+        static readonly Regex ValidateFileNameRegEx = new Regex("[" + Regex.Escape(new string(Path.GetInvalidFileNameChars())) + "]");
 
         public static string FileName(this TileReference reference)
         {
