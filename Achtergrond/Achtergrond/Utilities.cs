@@ -17,7 +17,14 @@ namespace ProvincieGroningen.AutoCad
         public static FileInfo GetFile(string formattedUrl, string fileName, string mimeType)
         {
             if (formattedUrl.StartsWith("file://"))
-                return new FileInfo(formattedUrl.Replace("file://", ""));
+            {
+                var fileInfo = new FileInfo(formattedUrl.Replace("file://", ""));
+                if (!fileInfo.Exists)
+                {
+                    throw new Exception($"Bestand {formattedUrl} niet gevonden.");
+                }
+                return fileInfo;
+            }
 
             return DownloadFile(formattedUrl, fileName, mimeType);
         }
