@@ -69,6 +69,8 @@ namespace ProvincieGroningen.AutoCad
             return reference.TileConfig.Url
                 .Replace("{Rij}", reference.Rij.ToString(CultureInfo.InvariantCulture))
                 .Replace("{Kolom}", reference.Kolom.ToString(CultureInfo.InvariantCulture))
+                .Replace("{Rij_2}", reference.Rij.ToString("00"))
+                .Replace("{Kolom_2}", reference.Kolom.ToString("00"))
                 .Replace("{X_Links}", reference.TopLeft.X.ToString(CultureInfo.InvariantCulture))
                 .Replace("{Y_Boven}", reference.TopLeft.Y.ToString(CultureInfo.InvariantCulture))
                 .Replace("{X_Rechts}", reference.BottomRight.X.ToString(CultureInfo.InvariantCulture))

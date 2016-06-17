@@ -11,8 +11,10 @@
     <TegelBreedte>1000</TegelBreedte>
     <TegelHoogte>1000</TegelHoogte>
     <!-- Gebruik placeholders:
-      {X} - rij in tegelmatrix
-      {Y} - kolom in tegelmatrix
+      {Kolom} - rij in tegelmatrix
+      {Rij} - kolom in tegelmatrix
+      {Kolom_2} - rij in tegelmatrix, altijd twee cijfers
+      {Rij_2} - kolom in tegelmatrix, altijd twee cijfers
       {X_Links}{Y_Links}{X_Rechts}{Y_Rechts} - coordinaten van de betreffende tegel
     -->
     <Url>file://L:/Luchtfoto/2015/Hoge_resolutie/ECW_tegels/2015_{X_Links}_{Y_Onder}_RGB_hrl.ecw</Url>
@@ -27,7 +29,7 @@
     </LinksBoven>
     <TegelBreedte>1000</TegelBreedte>
     <TegelHoogte>1000</TegelHoogte>
-    <Url>file://L:\Luchtfoto\2014\Hoge_resolutie\ECW_tegels/2014_{X_Links}_{Y_Onder}_RGB_hrl.ecw</Url>
+    <Url>file://L:\Luchtfoto\2014\Hoge_resolutie\ECW_tegels\2014_{X_Links}_{Y_Onder}_RGB_hrl.ecw</Url>
     <Extensie>.ecw</Extensie>
   </TileConfig>
 
